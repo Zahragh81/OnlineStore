@@ -17,7 +17,7 @@ return new class extends Migration
             استفاده شده =  1
             ');
 
-            $table->foreignId('user_id')->comment('کد کاربر')->constrained();
+            $table->foreignId('user_id')->comment('کد کاربر')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

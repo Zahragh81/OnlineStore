@@ -6,6 +6,7 @@ use App\Models\membership\Address;
 use App\Models\membership\City;
 use App\Models\membership\File;
 use App\Models\membership\Gender;
+use App\Models\membership\Otp;
 use App\Models\membership\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -40,7 +41,7 @@ class User extends Authenticatable
 
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'store_user');
+        return $this->belongsToMany(Store::class, 'store_users');
     }
 
     public function addresses()
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function avatar()
     {
         return $this->morphOne(File::class, 'model');
+    }
+
+    public function otps()
+    {
+        return $this->hasMany(Otp::class);
     }
 }

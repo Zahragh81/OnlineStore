@@ -14,7 +14,7 @@ class StoreResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'address' => $this->address,
-            'postal_code' => $this->posta_code,
+            'postal_code' => $this->postal_code,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'mobile' => $this->mobile,
@@ -25,7 +25,7 @@ class StoreResource extends JsonResource
             'banner' => new FileResource($this->whenLoaded('banner')),
 
             'city' => new CityResource($this->whenLoaded('city')),
-            'storeType' => new StoreTypeResource($this->whenLoaded('storeType'))
+            'storeTypes' => StoreTypeResource::collection($this->whenLoaded('storeTypes'))
         ];
     }
 }

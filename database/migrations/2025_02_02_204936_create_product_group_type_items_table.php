@@ -6,22 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    //رابطه یک به چند بین کاربر وفروشگاه
+    //ایتم گروه محصولات
     public function up(): void
     {
-        Schema::create('store_user', function (Blueprint $table) {
+        Schema::create('product_group_type_items', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique()->comment('نام');
             $table->boolean('status')->default(true)->comment('وضعیت');
-
-            $table->foreignId('user_id')->comment('کد کاربر')->constrained();
-            $table->foreignId('store_id')->comment('کد فروشگاه')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
+
     public function down(): void
     {
-        Schema::dropIfExists('store_user');
+        Schema::dropIfExists('product_group_type_items');
     }
 };

@@ -21,7 +21,6 @@ class StoreSeeder extends Seeder
                 'phone' => '05632225494',
                 'owner'  => 'امیر محمدی',
                 'city_id' => 1,
-                'store_type_id' => 1
             ],
             [
                 'title' => 'افق کوروش',
@@ -33,7 +32,6 @@ class StoreSeeder extends Seeder
                 'phone' => '05631622275',
                 'owner'  => 'فاطمه نصیری',
                 'city_id' => 1,
-                'store_type_id' => 1
             ],
             [
                 'title' => 'اسنوا',
@@ -45,7 +43,6 @@ class StoreSeeder extends Seeder
                 'phone' => '05632458237',
                 'owner'  => 'هانیه احمدی',
                 'city_id' => 1,
-                'store_type_id' => 5
             ]
         ];
 

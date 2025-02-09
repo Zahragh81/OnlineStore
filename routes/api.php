@@ -1,7 +1,13 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\membership\ProductBalanceController;
+use App\Http\Controllers\membership\ProductController;
+use App\Http\Controllers\membership\ProductGroupTypeController;
+use App\Http\Controllers\membership\ProductNatureAttributeController;
+use App\Http\Controllers\membership\ProductNatureController;
 use App\Http\Controllers\membership\StoreController;
+use App\Http\Controllers\membership\StoreTypeController;
 use App\Http\Controllers\membership\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +44,63 @@ Route::prefix('/admin')->middleware('auth:sanctum')->group(function () {
             Route::get('/upsertData', 'upsertData');
         });
 
-    });
+        // ProductGroupType
+        Route::prefix('/productGroupType')->controller(ProductGroupTypeController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{productGroupType}', 'show');
+            Route::put('/update/{productGroupType}', 'update');
+            Route::delete('/destroy/{productGroupType}', 'destroy');
+            Route::get('/upsertData', 'upsertData');
+        });
 
+        // StoreType
+        Route::prefix('/storeType')->controller(StoreTypeController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{storeType}', 'show');
+            Route::put('/update/{storeType}', 'update');
+            Route::delete('/destroy/{storeType}', 'destroy');
+            Route::get('/upsertData', 'upsertData');
+        });
+
+        // ProductNatureAttribute
+        Route::prefix('/productNatureAttribute')->controller(ProductNatureAttributeController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{productNatureAttribute}', 'show');
+            Route::put('/update/{productNatureAttribute}', 'update');
+            Route::delete('/destroy/{productNatureAttribute}', 'destroy');
+            Route::get('/upsertData', 'upsertData');
+        });
+
+        // ProductNature
+        Route::prefix('/productNature')->controller(ProductNatureController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{productNature}', 'show');
+            Route::put('/update/{productNature}', 'update');
+            Route::delete('/destroy/{productNature}', 'destroy');
+            Route::get('/upsertData', 'upsertData');
+        });
+
+        // Product
+        Route::prefix('/product')->controller(ProductController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{product}', 'show');
+            Route::put('/update/{product}', 'update');
+            Route::delete('/destroy/{product}', 'destroy');
+            Route::get('/productNatureAttribute', 'productNatureAttribute');
+            Route::get('/product', 'product');
+            Route::get('/upsertData', 'upsertData');
+        });
+
+        // ProductBalance
+        Route::prefix('/productBalance')->controller(ProductBalanceController::class)->group(function (){
+
+        });
+    });
 
 });
 

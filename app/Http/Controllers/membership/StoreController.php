@@ -8,14 +8,16 @@ use App\Http\Resources\membership\StoreResource;
 use App\Models\membership\City;
 use App\Models\membership\Store;
 use App\Models\membership\StoreType;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+
 
 class StoreController extends Controller
 {
     public function index()
     {
-        $stores = Store::select(['id', 'title', 'address', 'postal_code', 'latitude', 'longitude', 'mobile', 'phone', 'owner', 'city_id', 'store_type_id'])
-            ->with(['city:id,name', 'storeType:id,name', 'logo', 'banner'])
+        $stores = Store::select(['id', 'title', 'address', 'postal_code', 'latitude', 'longitude', 'mobile', 'phone', 'owner', 'city_id'])
+            ->with(['city:id,name', 'storeTypes:id,name', 'logo', 'banner'])
             ->where(function ($q) {
                 $q->where('title', 'like', $this->search);
             })->paginate($this->first);
@@ -28,6 +30,10 @@ class StoreController extends Controller
     {
         $inputs = $request->all();
         $store = Store::create($inputs);
+
+        if ($request->has('storeType_ids')) {
+            $store->storeTypes()->sync($request->input('storeType_ids'));
+        }
 
         $basePath = jdate($store->created_at)->format('Y/m/d');
 
@@ -68,13 +74,17 @@ class StoreController extends Controller
 
     public function show(Store $store)
     {
-        return new StoreResource($store->load(['city:id,name', 'storeType:id,name', 'logo', 'banner']));
+        return new StoreResource($store->load(['city:id,name', 'storeTypes:id,name', 'logo', 'banner']));
     }
 
 
     public function update(StoreRequest $request, Store $store)
     {
         $store->update($request->all());
+
+        if ($request->has('storeType_ids')) {
+            $store->storeTypes()->sync($request->input('storeType_ids'));
+        }
 
         $basePath = jdate($store->created_at)->format('Y/m/d');
 
@@ -128,6 +138,8 @@ class StoreController extends Controller
 
     public function destroy(Store $store)
     {
+        $store->storeTypes()->detach();
+
         if ($store->logo) {
             $filePath = $store->logo->path;
 

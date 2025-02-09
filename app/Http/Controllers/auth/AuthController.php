@@ -32,39 +32,11 @@ class AuthController extends Controller
 
         SendSmsJob::dispatch($request->mobile, $code);
 
+
         return self::successResponse([
             'tempToken' => $token
         ]);
     }
-
-
-//    public function sendCode(SendCodeRequest $request)
-//    {
-//        $user = User::withTrashed()->where('mobile', $request->mobile)->first();
-//
-//        if ($user) {
-//            if ($user->trashed()) {
-//                $user->restore();
-//            }
-//        } else {
-//            $user = User::create(['mobile' => $request->mobile]);
-//        }
-//
-//        $token = Str::random(32);
-//        $code = rand(100000, 999999);
-//
-//        Otp::create([
-//            'token' => $token,
-//            'code' => $code,
-//            'user_id' => $user->id,
-//        ]);
-//
-//        SendSmsJob::dispatch($request->mobile, $code);
-//
-//        return self::successResponse([
-//            'tempToken' => $token
-//        ]);
-//    }
 
 
     public function verifyCode(VerifyCodeRequest $request)

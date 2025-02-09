@@ -5,6 +5,7 @@ namespace App\Http\Controllers\membership;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\membership\UserResource;
+use App\Models\membership\Otp;
 use App\Models\membership\Store;
 use App\Models\User;
 
@@ -38,8 +39,6 @@ class UserController extends Controller
     public function show(User $user)
     {
         return new UserResource($user->load('stores:id,title'));
-
-
     }
 
 

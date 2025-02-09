@@ -22,7 +22,6 @@ return new class extends Migration
             $table->boolean('status')->default(true)->comment('وضعیت');
 
             $table->foreignId('city_id')->comment('کد شهر')->constrained();
-            $table->foreignId('store_type_id')->comment('کد نوع فروشگاه')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

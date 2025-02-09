@@ -11,15 +11,11 @@ class StoreTypeSeeder extends Seeder
     public function run(): void
     {
         $storeTypeNames = [
-            'مواد غذایی',
-            'ارایشی و بهداشتی',
+            'سوپر مارکت',
             'پوشاک',
-            'الکترونیک',
-            'لوازم خانگی',
-            'لوازم ورزشی',
-            'اسباب بازی'
+            'موبایل',
+            'لوازم خانگی'
         ];
-
         foreach ($storeTypeNames as $name) StoreType::create(['name' => $name]);
     }
 }

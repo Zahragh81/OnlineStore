@@ -9,7 +9,7 @@ class Store extends BaseModel
 {
     public function users()
     {
-        return $this->belongsToMany(User::class, 'store_user');
+        return $this->belongsToMany(User::class, 'store_users');
     }
 
     public function city()
@@ -27,9 +27,9 @@ class Store extends BaseModel
         return $this->morphOne(File::class, 'model')->where('type', 'banner');
     }
 
-    public function storeType()
+    public function storeTypes()
     {
-        return $this->belongsTo(StoreType::class);
+        return $this->belongsToMany(StoreType::class, 'store_store_types');
     }
 
 }
