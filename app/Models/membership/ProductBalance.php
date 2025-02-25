@@ -2,10 +2,22 @@
 
 namespace App\Models\membership;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class ProductBalance extends Model
+class ProductBalance extends BaseModel
 {
-    use HasFactory;
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function productBalanceAttributes()
+    {
+        return $this->hasMany(ProductBalanceAttribute::class, 'product_balance_id');
+    }
 }

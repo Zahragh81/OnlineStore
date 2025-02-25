@@ -7,13 +7,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductBalanceResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'price' => $this->price,
+            'number' => $this->number,
+
+            'product' => new ProductResource($this->whenLoaded('product')),
+            'store' => new StoreResource($this->whenLoaded('store')),
+            'productBalanceAttributes' => ProductBalanceAttributeResource::collection($this->whenLoaded('productBalanceAttributes')),
+
+            'status' => $this->status,
+        ];
     }
 }

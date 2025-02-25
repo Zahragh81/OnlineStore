@@ -32,4 +32,13 @@ class Store extends BaseModel
         return $this->belongsToMany(StoreType::class, 'store_store_types');
     }
 
+    public function productBalances()
+    {
+        return $this->hasMany(ProductBalance::class);
+    }
+
+//    public function products()
+//    {
+//        return $this->hasMany(Product::class);
+//    }
 }

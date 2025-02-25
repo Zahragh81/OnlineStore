@@ -6,7 +6,7 @@ use App\Models\membership\ProductNatureAttributeItem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductFeatureValueResource extends JsonResource
+class ProductBalanceAttributeResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
@@ -22,11 +22,11 @@ class ProductFeatureValueResource extends JsonResource
         return [
             'id' => $this->id,
             'value' => $value,
-            'products' => ProductResource::collection($this->whenLoaded('products')),
+
+            'productBalance' => new ProductBalanceResource($this->whenLoaded('productBalance')),
             'productNatureAttribute' => new ProductNatureAttributeResource($this->whenLoaded('productNatureAttribute')),
+
             'status' => $this->status,
         ];
-
     }
-
 }

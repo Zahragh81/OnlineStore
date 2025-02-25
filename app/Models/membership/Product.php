@@ -6,6 +6,13 @@ use App\Models\BaseModel;
 
 class Product extends BaseModel
 {
+    public function getPriceAttribute()
+    {
+        return $this->productBalances()
+            ->where('status', true)
+            ->min('price');
+    }
+
     public function files()
     {
         return $this->morphMany(File::class, 'model')->where('type', 'files');
@@ -34,5 +41,15 @@ class Product extends BaseModel
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function productBalances()
+    {
+        return $this->hasMany(ProductBalance::class);
+    }
+
+    public function productBalanceAttributes()
+    {
+        return $this->hasMany(ProductBalanceAttribute::class, 'product_balance_id');
     }
 }

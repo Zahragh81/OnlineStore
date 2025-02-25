@@ -8,7 +8,6 @@ use App\Http\Resources\membership\StoreResource;
 use App\Models\membership\City;
 use App\Models\membership\Store;
 use App\Models\membership\StoreType;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 

@@ -10,6 +10,7 @@ use App\Models\membership\ProductNature;
 use App\Models\membership\ProductNatureAttribute;
 use App\Models\membership\StoreType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProductNatureController extends Controller
@@ -29,13 +30,12 @@ class ProductNatureController extends Controller
     public function store(ProductNatureRequest $request)
     {
         $input = $request->all();
-
         $productNature = ProductNature::create($input);
 
         if ($request->has('productNatureAttributes')) {
             $attributes = [];
             foreach ($request->input('productNatureAttributes') as $attribute) {
-                $attributes[$attribute['id']] = ['admin_panel' => $attribute['admin_panel']];
+                $attributes[$attribute['productNatureAttributeId']] = ['admin_panel' => $attribute['admin_panel']];
             }
 
             $productNature->productNatureAttributes()->sync($attributes);
@@ -75,7 +75,7 @@ class ProductNatureController extends Controller
         if ($request->has('productNatureAttributes')) {
             $attributes = [];
             foreach ($request->input('productNatureAttributes') as $attribute) {
-                $attributes[$attribute['id']] = ['admin_panel' => $attribute['admin_panel']];
+                $attributes[$attribute['productNatureAttributeId']] = ['admin_panel' => $attribute['admin_panel']];
                 $productNature->productNatureAttributes()->sync($attributes);
             }
         }

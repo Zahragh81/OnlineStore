@@ -14,6 +14,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'product_introduction' => $this->product_introduction,
+            'minPrice' => $this->price,
             'productNature' => new  ProductNatureResource($this->whenLoaded('productNature')),
             'brand' => new BrandResource($this->whenLoaded('brand')),
             'productFeatureValues' => ProductFeatureValueResource::collection($this->whenLoaded('productFeatureValues')),

@@ -9,6 +9,7 @@ use App\Models\membership\ProductNatureAttribute;
 use App\Models\membership\ProductNatureAttributeItem;
 use App\Models\ProductNatureAttributeType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use function Laravel\Prompts\select;
 
 class ProductNatureAttributeController extends Controller
@@ -28,6 +29,7 @@ class ProductNatureAttributeController extends Controller
     public function store(ProductNatureAttributeRequest $request)
     {
         $input = $request->all();
+        Log::info($input);
 
         $productNatureAttributes = ProductNatureAttribute::create($input);
 

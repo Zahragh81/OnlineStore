@@ -6,8 +6,7 @@ use App\Traits\ApiResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Nette\Schema\ValidationException;
-use PHPUnit\Framework\Attributes\TestWithJson;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -70,7 +69,7 @@ class Handler extends ExceptionHandler
             return $this->errorResponse($e->getMessage(), 405);
 
         if ($e instanceof ValidationException)
-            return $this->errorResponse($e->getMessage(), 422);
+            return $this->errorResponse($e->errors(), 422);
 
         return $this->errorResponse($e->getMessage(), 500);
 

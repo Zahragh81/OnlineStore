@@ -10,8 +10,7 @@ return new class extends Migration {
         // اعلام موجودی کالا
         Schema::create('product_balances', function (Blueprint $table) {
             $table->id();
-            $table->json('value')->nullable()->comment('مقدار ویژگی (عدد یا مجموعه)');
-            $table->decimal('price', 10)->comment('قیمت');
+            $table->bigInteger('price')->comment('قیمت');
             $table->integer('number')->comment('تعداد');
             $table->boolean('status')->default(true)->comment('وضعیت');
 

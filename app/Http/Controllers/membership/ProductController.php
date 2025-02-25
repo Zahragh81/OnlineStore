@@ -4,17 +4,20 @@ namespace App\Http\Controllers\membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\membership\ProductBalanceResource;
 use App\Http\Resources\membership\ProductNatureAttributeResource;
 use App\Http\Resources\membership\ProductNatureResource;
 use App\Http\Resources\membership\ProductResource;
 use App\Models\membership\Brand;
 use App\Models\membership\Product;
+use App\Models\membership\ProductBalance;
 use App\Models\membership\ProductNature;
 use App\Models\membership\ProductNatureAttribute;
 use App\Models\membership\Store;
 use App\Models\ProductNatureAttributeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use function Symfony\Component\Translation\t;
 
 class ProductController extends Controller
 {
@@ -37,8 +40,10 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $input = $request->all();
+        \Log::info($input);
 
         $product = Product::create($input);
+        \Log::info($product);
 
         if ($request->has('productFeatureValues')) {
             foreach ($request->input('productFeatureValues') as $featureValue) {
@@ -147,8 +152,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if($product->productFeatureValues){
-            foreach ($product->productFeatureValues as $featureValue){
+        if ($product->productFeatureValues) {
+            foreach ($product->productFeatureValues as $featureValue) {
                 $product->productFeatureValues()->detach($featureValue->id);
 
                 $featureValue->delete();
@@ -224,12 +229,32 @@ class ProductController extends Controller
     }
 
 
+    public function productDetail(Product $product)
+    {
+
+        $product = new ProductResource($product->load('productNature:id,name', 'brand:id,name', 'productFeatureValues', 'files'));
+
+        $relatedProducts = Product::whereHas('relatedProducts', fn($q) => $q->where('product_id', $product->id))
+            ->select(['id', 'name'])
+            ->get();
+
+        $similarProducts = Product::whereHas('similarProducts', fn($q) => $q->where('product_id', $product->id))
+            ->select(['id', 'name'])
+            ->get();
+
+        return self::successResponse([
+            'product' => new ProductResource($product),
+            'relatedProducts' => ProductResource::collection($relatedProducts),
+            'similarProducts' => ProductResource::collection($similarProducts)
+        ]);
+    }
+
+
     public function upsertData()
     {
         return self::successResponse([
             'productNatures' => ProductNature::select(['id', 'name'])->get(),
             'brands' => Brand::select(['id', 'name'])->get(),
-            'productNatureAttributes' => ProductNatureAttribute::select(['id', 'name'])->get(),
         ]);
 
     }

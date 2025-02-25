@@ -93,12 +93,22 @@ Route::prefix('/admin')->middleware('auth:sanctum')->group(function () {
             Route::delete('/destroy/{product}', 'destroy');
             Route::get('/productNatureAttribute', 'productNatureAttribute');
             Route::get('/product', 'product');
+            Route::get('/productDetail/{product}', 'productDetail');
             Route::get('/upsertData', 'upsertData');
         });
 
         // ProductBalance
         Route::prefix('/productBalance')->controller(ProductBalanceController::class)->group(function (){
-
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{productBalance}', 'show');
+            Route::put('/update/{productBalance}', 'update');
+            Route::delete('/destroy/{productBalance}', 'destroy');
+            Route::get('/product', 'product');
+            Route::get('/storeType', 'storeType');
+            Route::get('/productBalance', 'productNatureAttribute');
+            Route::get('/productNatureAttributesNonAdminPanel', 'productNatureAttributesNonAdminPanel');
+            Route::get('/productBalanceAttribute', 'productBalanceAttribute');
         });
     });
 
