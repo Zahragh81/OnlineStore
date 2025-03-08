@@ -2,14 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\membership\Address;
-use App\Models\membership\City;
-use App\Models\membership\File;
-use App\Models\membership\Gender;
-use App\Models\membership\Otp;
-use App\Models\membership\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -57,5 +50,10 @@ class User extends Authenticatable
     public function otps()
     {
         return $this->hasMany(Otp::class);
+    }
+
+    public function shoppingCarts()
+    {
+        return $this->hasMany(ShoppingCart::class);
     }
 }

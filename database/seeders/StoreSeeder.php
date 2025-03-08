@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\membership\Store;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Store;
 use Illuminate\Database\Seeder;
 
 class StoreSeeder extends Seeder

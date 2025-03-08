@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\membership\Brand;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Brand;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\membership\ProductGroupTypeItem;
+use App\Models\ProductGroupTypeItem;
 use Illuminate\Database\Seeder;
 
 class ProductGroupTypeItemSeeder extends Seeder

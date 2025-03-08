@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\membership\ProductNatureAttributeItem;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ProductNatureAttributeItem;
 use Illuminate\Database\Seeder;
 
 class ProductNatureAttributeItemSeeder extends Seeder
