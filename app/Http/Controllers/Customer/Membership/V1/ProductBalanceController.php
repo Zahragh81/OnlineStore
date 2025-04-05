@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\customer\membership\V1;
+namespace App\Http\Controllers\Customer\Membership\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductBalanceResource;
+use App\Http\Resources\Customer\Membership\V1\ProductBalanceResource as CustomerProductBalanceResource;
 use App\Models\ProductBalance;
 use Illuminate\Http\Request;
 
@@ -21,7 +21,7 @@ class ProductBalanceController extends Controller
             ])->get();
 
         return self::successResponse([
-            'productBalances' => ProductBalanceResource::collection($productBalances)
+            'productBalances' => CustomerProductBalanceResource::collection($productBalances)
         ]);
     }
 

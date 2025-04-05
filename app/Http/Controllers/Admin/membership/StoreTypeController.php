@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\Membership;
+namespace App\Http\Controllers\Admin\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Membership\StoreTypeRequest;
-use App\Http\Resources\StoreTypeResource;
+use App\Http\Resources\Admin\Membership\StoreTypeResource;
 use App\Models\ProductGroupType;
 use App\Models\StoreType;
 

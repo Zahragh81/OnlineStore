@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\customer\membership\V1;
+namespace App\Http\Controllers\Customer\Membership\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StoreResource;
+use App\Http\Resources\Customer\Membership\V1\StoreResource as CustomerStoreResource;
 use App\Models\Store;
-use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -17,6 +16,6 @@ class StoreController extends Controller
                 $q->where('title', 'like', $this->search);
             })->paginate($this->first);
 
-        return StoreResource::collection($stores);
+        return CustomerStoreResource::collection($stores);
     }
 }

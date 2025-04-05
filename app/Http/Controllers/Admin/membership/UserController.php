@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\Membership;
+namespace App\Http\Controllers\Admin\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Membership\UserRequest;
-use App\Http\Resources\StoreResource;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Admin\Membership\StoreResource;
+use App\Http\Resources\Admin\Membership\UserResource;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;

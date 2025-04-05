@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\shop\Membership;
+namespace App\Http\Controllers\Shop\Membership;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StoreResource;
+use App\Http\Resources\Shop\Membership\StoreResource as ShopStoreResource;
 use App\Models\Store;
-use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
     public function __invoke(Store $store)
     {
-        return new StoreResource($store->load(['city:id,name', 'storeTypes:id,name', 'logo', 'banner']));
+        return new ShopStoreResource($store->load(['city:id,name', 'storeTypes:id,name', 'logo', 'banner']));
     }
 }

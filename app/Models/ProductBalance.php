@@ -34,4 +34,9 @@ class ProductBalance extends BaseModel
     {
         return $this->hasMany(ShoppingCart::class);
     }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

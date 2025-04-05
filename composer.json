@@ -10,7 +10,9 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "morilog/jalali": "3.*"
+        "morilog/jalali": "3.*",
+        "shetabit/payment": "^6.1",
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

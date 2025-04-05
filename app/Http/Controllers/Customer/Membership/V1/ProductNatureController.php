@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\customer\membership\V1;
+namespace App\Http\Controllers\Customer\Membership\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductNatureResource;
+use App\Http\Resources\Customer\Membership\V1\ProductNatureResource as CustomerProductNatureResource;
 use App\Models\ProductNature;
-use Illuminate\Http\Request;
 
 class ProductNatureController extends Controller
 {
@@ -17,6 +16,6 @@ class ProductNatureController extends Controller
                 $q->where('name', 'like', $this->search);
             })->paginate($this->first);
 
-        return ProductNatureResource::collection($productNatures);
+        return CustomerProductNatureResource::collection($productNatures);
     }
 }

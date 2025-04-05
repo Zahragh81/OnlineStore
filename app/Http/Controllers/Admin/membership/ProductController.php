@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\Membership;
+namespace App\Http\Controllers\Admin\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Membership\ProductRequest;
-use App\Http\Resources\ProductNatureResource;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\Admin\Membership\ProductNatureResource;
+use App\Http\Resources\Admin\Membership\ProductResource;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductNature;

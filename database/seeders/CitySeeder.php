@@ -9,10 +9,18 @@ class CitySeeder extends Seeder
 {
     public function run(): void
     {
-        $cityNames = [
-            'بیرجند'
+        $cities = [
+            [
+                'name' => 'بیرجند',
+                'parent_id' => 10
+            ],
+            [
+                'name' => 'مشهد',
+                'parent_id' => 11
+            ]
         ];
 
-        foreach ($cityNames as $name) City::create(['name' => $name]);
+        foreach ($cities as $city) City::create($city);
+
     }
 }

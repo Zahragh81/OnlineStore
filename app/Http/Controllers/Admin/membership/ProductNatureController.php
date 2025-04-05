@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\Membership;
+namespace App\Http\Controllers\Admin\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Membership\ProductNatureRequest;
-use App\Http\Resources\ProductNatureResource;
+use App\Http\Resources\Admin\Membership\ProductNatureResource;
 use App\Models\ProductNature;
 use App\Models\ProductNatureAttribute;
 use App\Models\StoreType;

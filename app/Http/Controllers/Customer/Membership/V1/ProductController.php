@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\customer\membership\V1;
+namespace App\Http\Controllers\Customer\Membership\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductBalanceResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\StoreResource;
+use App\Http\Resources\Customer\Membership\V1\ProductResource as CustomerProductResource;
+use App\Http\Resources\Customer\Membership\V1\StoreResource as CustomerStoreResource;
+use App\Http\Resources\Customer\Membership\V1\ProductBalanceResource as CustomerProductBalanceResource;
 use App\Models\Product;
-use App\Models\ProductBalance;
-use App\Models\ShoppingCart;
-use App\Models\Store;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -27,7 +23,7 @@ class ProductController extends Controller
             })
             ->paginate($this->first);
 
-        return ProductResource::collection($products);
+        return CustomerProductResource::collection($products);
     }
 
 
@@ -65,14 +61,14 @@ class ProductController extends Controller
 
 
         return self::successResponse([
-            'product' => new ProductResource($product),
-            'storeProductBalances' => ProductBalanceResource::collection($minStoreBalance->load(['productBalanceAttributes', 'store:id,title'])),
+            'product' => new CustomerProductResource($product),
+            'storeProductBalances' => CustomerProductBalanceResource::collection($minStoreBalance->load(['productBalanceAttributes', 'store:id,title'])),
             'otherStores' => $otherStores->map(fn($balance) => [
-                'store' => new StoreResource($balance->store),
+                'store' => new CustomerStoreResource($balance->store),
                 'price' => $balance->price
             ]),
-            'relatedProducts' => ProductResource::collection($relatedProducts),
-            'similarProducts' => ProductResource::collection($similarProducts),
+            'relatedProducts' => CustomerProductResource::collection($relatedProducts),
+            'similarProducts' => CustomerProductResource::collection($similarProducts),
         ]);
     }
 

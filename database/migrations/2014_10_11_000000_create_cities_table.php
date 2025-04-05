@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('نام');
+            $table->foreignId('parent_id')->nullable()->constrained('provinces');
             $table->boolean('status')->default(true)->comment('وضعیت');
             $table->timestamps();
             $table->softDeletes();

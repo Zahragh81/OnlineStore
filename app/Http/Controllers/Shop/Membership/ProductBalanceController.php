@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\shop\Membership;
+namespace App\Http\Controllers\Shop\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shop\Membership\ProductBalanceRequest;
-use App\Http\Resources\ProductBalanceResource;
-use App\Http\Resources\ProductNatureResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\StoreTypeResource;
+use App\Http\Resources\Admin\Membership\ProductNatureResource;
+use App\Http\Resources\Admin\Membership\ProductResource;
+use App\Http\Resources\Admin\Membership\StoreTypeResource;
+use App\Http\Resources\Shop\Membership\ProductBalanceResource;
 use App\Models\Product;
 use App\Models\ProductBalance;
 use App\Models\Store;
 use Illuminate\Http\Request;
-use Log;
 
 class ProductBalanceController extends Controller
 {

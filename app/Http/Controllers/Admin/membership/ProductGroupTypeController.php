@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin\Membership;
+namespace App\Http\Controllers\Admin\Membership;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Membership\ProductGroupTypeRequest;
-use App\Http\Resources\ProductGroupTypeResource;
+use App\Http\Resources\Admin\Membership\ProductGroupTypeResource;
 use App\Models\ProductGroupType;
 use App\Models\ProductGroupTypeItem;
 

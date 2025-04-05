@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GenderSeeder::class,
 
+            ProvinceSeeder::class,
             CitySeeder::class,
 
             StoreTypeSeeder::class,
@@ -22,6 +23,15 @@ class DatabaseSeeder extends Seeder
             ProductNatureAttributeTypeSeeder::class,
 
             BrandSeeder::class,
+
+            OrderStatusSeeder::class,
+
+            OrderItemStatusSeeder::class,
+
+            CourierTypeSeeder::class,
+
+            PaymentMethodSeeder::class
+
         ]);
     }
 }

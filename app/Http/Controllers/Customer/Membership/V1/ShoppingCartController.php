@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Customer\Membership\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customer\Membership\V1\ShoppingCartRequest;
-use App\Http\Resources\ShoppingCartResource;
+use App\Http\Resources\Customer\Membership\V1\OrderResource;
+use App\Http\Resources\Customer\Membership\V1\ShoppingCartResource;
+use App\Models\Order;
 use App\Models\ShoppingCart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
@@ -21,12 +22,28 @@ class ShoppingCartController extends Controller
                 'product' => fn($q) => $q->with('files'),
                 'productBalanceAttributes'
             ])
-        ])
-            ->where('user_id', $userId)
+        ])->where('user_id', $userId)
             ->where('status', true)
             ->get();
 
-        return ShoppingCartResource::collection($shoppingCartItems);
+        $unpaidOrders = Order::with([
+            'user',
+            'shippingMethod',
+            'province',
+            'city',
+            'orderStatus',
+            'paymentGateway',
+            'paymentMethod',
+            'courier'
+        ])
+            ->where('user_id', $userId)
+            ->where('pay_status', false)
+            ->get();
+
+        return self::successResponse([
+            'shoppingCartItems' => ShoppingCartResource::collection($shoppingCartItems),
+            'unpaidOrders' => OrderResource::collection($unpaidOrders)
+        ]);
     }
 
 
